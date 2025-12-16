@@ -1,0 +1,33 @@
+.page-hero {
+	padding: 60px 20px;
+    text-align: center;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.page-hero h1 {
+    margin-bottom: 10px;
+}
+
+.first-paragraph-section {
+    padding: 60px 20px;
+}
+
+.first-paragraph {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+	font-size: 24px;
+}
+
+.left-side-paragraph, .right-side-paragraph {
+    background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 8px;
+    line-height: 1.7;
+	padding: 30px;
+}
+
+@media (max-width: 768px) {
+    .first-paragraph {
+        grid-template-columns: 1fr;
+    }
+}
