@@ -1,0 +1,136 @@
+.page-hero {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.page-hero h1 {
+    margin-bottom: 10px;
+}
+
+.pricing-section {
+    padding: 60px 20px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.pricing-card {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(77, 159, 255, 0.2);
+}
+
+.pricing-card h3 {
+    font-size: 1.8rem;
+    color: #80bfff;
+    margin-bottom: 15px;
+}
+
+.pricing-card .price {
+    font-size: 3rem;
+    color: #4d9fff;
+    margin: 20px 0;
+}
+
+.pricing-card ul {
+    list-style: none;
+    margin: 30px 0;
+}
+
+.pricing-card ul li {
+    margin-bottom: 15px;
+    color: #ccc;
+	font-size: 20px;
+}
+
+.pricing-card .btn {
+    display: inline-block;
+    background-color: transparent;
+    color: #4d9fff;
+    border: 2px solid #4d9fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.pricing-card .btn:hover {
+    background-color: #4d9fff;
+    color: #000000;
+    text-decoration: none;
+}
+
+.pricing-card.featured {
+    border-color: #4d9fff;
+    transform: scale(1.05);
+}
+
+.pricing-card.featured .btn {
+    background-color: #4d9fff;
+    color: #000000;
+}
+
+.pricing-card.featured .btn:hover {
+    background-color: #80bfff;
+}
+
+.featured-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4d9fff;
+    color: #000000;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.faq-section {
+    padding: 60px 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-item {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #4d9fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.faq-item h3 {
+    color: #80bfff;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .pricing-card.featured {
+        transform: scale(1);
+    }
+}
