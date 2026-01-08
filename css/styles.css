@@ -7,9 +7,9 @@ body {
     font-family: 'Lato';
     color: #4d9fff;
     line-height: 1.6;
-	background-image: url('../img/festival-image-1.jpg');
-	background-repeat: no-repeat;
-	background-color: #000;
+    background-image: url('../img/festival-image-1.jpg');
+    background-repeat: no-repeat;
+    background-color: #000;
 }
 
 .container {
@@ -36,7 +36,7 @@ a:hover {
 }
 
 p {
-	font-size: 24px;
+    font-size: 24px;
 }
 
 .main-header {
@@ -50,8 +50,7 @@ p {
 
 .logo {
     width: 5%;
-	padding-top: 0.7em;
-	
+    padding-top: 0.7em;
 }
 
 .main-nav ul {
@@ -85,7 +84,7 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-	background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .info-column ul {
@@ -94,7 +93,7 @@ p {
 
 .info-column ul li {
     margin-bottom: 10px;
-	font-size: 24px;
+    font-size: 24px;
 }
 
 .reviews-section {
@@ -104,7 +103,7 @@ p {
 }
 
 .reviews-header {
-	background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .reviews-container {
@@ -158,16 +157,121 @@ footer {
     border-top: 2px solid #4d9fff;
 }
 
+/* --- MOBILE STYLES --- */
+
+/* Hamburger menu button styles */
+.mobile-nav-toggle {
+    display: none; /* Hidden on desktop */
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.mobile-nav-toggle span,
+.mobile-nav-toggle span::before,
+.mobile-nav-toggle span::after {
+    display: block;
+    background: #4d9fff;
+    height: 2px;
+    width: 2em;
+    border-radius: 1px;
+    position: relative;
+}
+
+.mobile-nav-toggle span::before,
+.mobile-nav-toggle span::after {
+    content: '';
+    position: absolute;
+}
+
+.mobile-nav-toggle span::before {
+    top: 8px;
+}
+
+.mobile-nav-toggle span::after {
+    bottom: 8px;
+}
+
+/* Visually hidden text for screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Media query for mobile devices */
 @media (max-width: 768px) {
     .main-header {
+        flex-direction: row; /* Keep header row on mobile */
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Show hamburger button on mobile */
+    .mobile-nav-toggle {
+        display: block;
+    }
+
+    /* Style the mobile navigation overlay */
+    #primary-navigation {
+        position: fixed;
+        inset: 0 0 0 30%; /* Cover 70% of the screen from the right */
+        background: #000000;
+        padding: 7rem 2rem;
+        z-index: 1000;
+        transform: translateX(100%); /* Start off-screen */
+        transition: transform 350ms ease-in-out;
+    }
+
+    /* When the nav is open, slide it in */
+    #primary-navigation[data-visible="true"] {
+        transform: translateX(0%);
+    }
+
+    /* Stack the nav links vertically */
+    #primary-navigation ul {
         flex-direction: column;
-        gap: 10px;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+
+    /* Animate the hamburger to an 'X' when open */
+    .mobile-nav-toggle[aria-expanded="true"] span {
+        background: transparent;
+    }
+
+    .mobile-nav-toggle[aria-expanded="true"] span::before {
+        transform: rotate(45deg);
+        top: 0;
+    }
+
+    .mobile-nav-toggle[aria-expanded="true"] span::after {
+        transform: rotate(-45deg);
+        bottom: 0;
     }
 
     h1 { font-size: 3rem; }
     h2 { font-size: 2rem; }
 
+    /* Stack info columns on mobile */
     .info-section .container {
         grid-template-columns: 1fr;
+    }
+
+    /* Improve readability on mobile */
+    body {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    p, .info-column ul li {
+        font-size: 18px; /* Slightly smaller text for mobile */
     }
 }
