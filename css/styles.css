@@ -10,6 +10,8 @@ body {
     background-image: url('../img/festival-image-1.jpg');
     background-repeat: no-repeat;
     background-color: #000;
+    background-attachment: fixed; /* Makes the background image stay put */
+    background-size: cover; /* Ensures the image covers the whole screen */
 }
 
 .container {
@@ -40,17 +42,21 @@ p {
 }
 
 .main-header {
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent header */
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #4d9fff;
+    position: sticky; /* Makes header stick to the top */
+    top: 0;
+    z-index: 999;
 }
 
 .logo {
     width: 5%;
     padding-top: 0.7em;
+    min-width: 50px; /* Prevents logo from getting too small */
 }
 
 .main-nav ul {
@@ -114,7 +120,6 @@ p {
     padding-bottom: 7.5em;
 }
 
-
 .reviews-track {
     display: flex;
     gap: 20px;
@@ -141,16 +146,12 @@ p {
 }
 
 @keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
 
 footer {
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.8);
     color: #4d9fff;
     text-align: center;
     padding: 20px;
@@ -159,42 +160,10 @@ footer {
 
 /* --- MOBILE STYLES --- */
 
-/* Hamburger menu button styles */
 .mobile-nav-toggle {
-    display: none; /* Hidden on desktop */
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1001;
+    display: none;
 }
 
-.mobile-nav-toggle span,
-.mobile-nav-toggle span::before,
-.mobile-nav-toggle span::after {
-    display: block;
-    background: #4d9fff;
-    height: 2px;
-    width: 2em;
-    border-radius: 1px;
-    position: relative;
-}
-
-.mobile-nav-toggle span::before,
-.mobile-nav-toggle span::after {
-    content: '';
-    position: absolute;
-}
-
-.mobile-nav-toggle span::before {
-    top: 8px;
-}
-
-.mobile-nav-toggle span::after {
-    bottom: 8px;
-}
-
-/* Visually hidden text for screen readers */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -207,43 +176,67 @@ footer {
     border-width: 0;
 }
 
-/* Media query for mobile devices */
 @media (max-width: 768px) {
-    .main-header {
-        flex-direction: row; /* Keep header row on mobile */
-        justify-content: space-between;
-        align-items: center;
-    }
-
     /* Show hamburger button on mobile */
     .mobile-nav-toggle {
         display: block;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 1001;
     }
 
-    /* Style the mobile navigation overlay */
+    .mobile-nav-toggle span,
+    .mobile-nav-toggle span::before,
+    .mobile-nav-toggle span::after {
+        display: block;
+        background: #4d9fff;
+        height: 2px;
+        width: 2em;
+        border-radius: 1px;
+        position: relative;
+        transition: background 0.3s;
+    }
+
+    .mobile-nav-toggle span::before,
+    .mobile-nav-toggle span::after {
+        content: '';
+        position: absolute;
+        transition: transform 0.3s;
+    }
+
+    .mobile-nav-toggle span::before { top: 8px; }
+    .mobile-nav-toggle span::after { bottom: 8px; }
+
+    /* Full-screen navigation overlay */
     #primary-navigation {
         position: fixed;
-        inset: 0 0 0 30%; /* Cover 70% of the screen from the right */
-        background: #000000;
+        inset: 0; /* Covers the entire screen */
+        background: rgba(0, 0, 0, 0.95);
         padding: 7rem 2rem;
         z-index: 1000;
-        transform: translateX(100%); /* Start off-screen */
-        transition: transform 350ms ease-in-out;
+        transform: translateY(100%); /* Starts from the bottom */
+        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncy animation */
     }
 
-    /* When the nav is open, slide it in */
     #primary-navigation[data-visible="true"] {
-        transform: translateX(0%);
+        transform: translateY(0);
     }
 
-    /* Stack the nav links vertically */
     #primary-navigation ul {
         flex-direction: column;
         gap: 2rem;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
     }
 
-    /* Animate the hamburger to an 'X' when open */
+    #primary-navigation a {
+        font-size: 2rem;
+    }
+
+    /* Animate hamburger to 'X' */
     .mobile-nav-toggle[aria-expanded="true"] span {
         background: transparent;
     }
@@ -258,20 +251,25 @@ footer {
         bottom: 0;
     }
 
-    h1 { font-size: 3rem; }
-    h2 { font-size: 2rem; }
+    /* --- Content Adjustments for Mobile --- */
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; }
+    
+    .container {
+        padding: 15px; /* Less padding on smaller screens */
+    }
 
-    /* Stack info columns on mobile */
     .info-section .container {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
-    /* Improve readability on mobile */
-    body {
-        font-size: 16px; /* Prevents zoom on iOS */
+    p, .info-column ul li {
+        font-size: 16px; /* More readable text size */
     }
     
-    p, .info-column ul li {
-        font-size: 18px; /* Slightly smaller text for mobile */
+    .review-card {
+        min-width: 280px; /* Slightly smaller cards */
+        padding: 20px;
     }
 }
